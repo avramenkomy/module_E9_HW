@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+</head>
+<body>
+
+    <header></header>
+
+    <main>
+        <h1>Enter your data for register.</h1>
+
+
+        <div class="register-form">
+            <form method="POST" action="/register">
+                {{ form.csrf_token }}
+
+                <div class="form-field">
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </div>
+
+                <div class="form-field">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </div>
+
+                <input type="submit" value="Отправить">
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer></footer>
+
+</body>
+</html>

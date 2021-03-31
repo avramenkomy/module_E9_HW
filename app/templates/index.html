@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Добро пожаловать</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Добро пожаловать на портал</h1>
+
+    {% for msg in get_flashed_messages() %}
+        <div class="flash">{{ msg }}</div>
+    {% endfor %}
+
+    <header>
+        <div class="block-username-logout">
+            <span>{{ current_user.email }} </span>| <span><a href="{{ url_for('logout') }}">logout</a></span>
+        </div>
+    </header>
+
+    <main>
+        <h1>Welcome to portal of events</h1>
+    </main>
+
+    <footer></footer>
+
+
 </body>
 </html>

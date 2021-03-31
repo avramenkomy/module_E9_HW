@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+
+    <header></header>
+
+    <main>
+        <h1>Enter your data for login on us portal.</h1>
+
+
+        <div class="login-form">
+            <form method="POST" action="/login">
+                {{ form.csrf_token }}
+
+                <div class="form-field">
+                    {{ form.email.label }}
+                    {{ form.email }}
+                </div>
+
+                <div class="form-field">
+                    {{ form.password.label }}
+                    {{ form.password }}
+                </div>
+
+                <input type="submit" value="Отправить">
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer></footer>
+
+</body>
+</html>

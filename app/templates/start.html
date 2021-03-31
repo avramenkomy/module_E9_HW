@@ -6,31 +6,17 @@
 </head>
 <body>
 
+    {% for msg in get_flashed_messages() %}
+        <div class="flash">{{ msg }}</div>
+    {% endfor %}
+
     <header></header>
 
     <main>
-        <h1>Добро пожаловать на многопользовательский портал объявлений.</h1>
-        <p>Для продолжения войдите под <a href="/login">своей учетной записью</a> или <a href="/register">зарегистрируйтесь</ahref>.</p>
-
-<!--        <div class="login-form">-->
-<!--            <form method="POST" action="login_register">-->
-<!--                {{ form.csrf_token }}-->
-
-<!--                <div class="form-field">-->
-<!--                    {{ form.email.label }}-->
-<!--                    {{ form.email }}-->
-<!--                </div>-->
-
-<!--                <div class="form-field">-->
-<!--                    {{ form.password.label }}-->
-<!--                    {{ form.password }}-->
-<!--                </div>-->
-
-<!--                <input type="submit" value="Отправить">-->
-
-<!--            </form>-->
-        </div>
-
+        <h1>Welcome to multi user portal for posts.</h1>
+        <p>
+            For continue login <a href="/login">youre profile</a> or <a href="/register">register now</a>.
+        </p>
     </main>
 
     <footer></footer>
