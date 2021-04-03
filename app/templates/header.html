@@ -1,0 +1,20 @@
+
+<header>
+    <div class="header-wrapper" style="height:100px; display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+        <div class="logo" style="margin-left: 30px">
+            <a href="/index" class="logo-image">
+                <img src="{{ url_for('static', filename='images/TheresaKnott_castle.svg') }}" alt="index" style="width: 70px">
+            </a>
+        </div>
+
+        <nav class="nav-panel">
+            <a href="/create_post" class="nav-link" style="margin-right: 15px;">Create post</a>
+            <a href="/update" class="nav-link" style="margin-right: 15px;">Update post</a>
+            <a href="/delete" class="nav-link" style="margin-right: 15px;">Delete post</a>
+        </nav>
+
+        <div class="block-username-logout" style="margin-right: 30px">
+            <span>{{ current_user.email }} </span>| <span><a href="{{ url_for('logout') }}">logout</a></span>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update post</title>
+</head>
+<body>
+    {% for msg in get_flashed_messages() %}
+        <div class="flash">{{ msg }}</div>
+    {% endfor %}
+
+    {% include 'header.html' %}
+
+    {% if post %}
+        <h3>Current info of Post {{ post.title }}</h3>
+        <div class="post-card">
+            <div>Topic: {{ post.topic }}</div>
+            <div>Description: {{ post.Description }}</div>
+            {% if post.start %}
+                <div>Start event: {{ post.start.strftime('%Y-%m-%d') }}</div>
+            {% endif %}
+            {% if post.end %}
+                <div>End event: {{ post.end.strftime('%Y-%m-%d') }}</div>
+            {% endif %}
+            {% if post.tags %}
+                <div>Tags of event: {{ post.tags }}</div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <h3>Form for update Post</h3>
+    <form method="POST" action="/update/{{ post.id }}">
+        {{ form.csrf_token }}
+
+        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div class="form-field-label">{{ form.title.label }}</div>
+            <div class="form-field-value">{{ form.title }}</div>
+        </div>
+        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div class="form-field-label">{{ form.topic.label }}</div>
+            <div class="form-field-value">{{ form.topic }}</div>
+        </div>
+        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div class="form-field-label">{{ form.start_event.label }}</div>
+            <div class="form-field-value">{{ form.start_event }}</div>
+        </div>
+        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div class="form-field-label">{{ form.end_event.label }}</div>
+            <div class="form-field-value">{{ form.end_event }}</div>
+        </div>
+        <div class="form-field" style="display: grid;">
+            <div class="form-field-label">{{ form.description.label }}</div>
+            <div class="form-field-value">{{ form.description }}</div>
+        </div>
+        <input type="submit" value="Отправить">
+    </form>
+</body>
+</html>

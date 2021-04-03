@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post {{ post.title }}</title>
+</head>
+<body>
+
+    {% for msg in get_flashed_messages() %}
+        <div class="flash">{{ msg }}</div>
+    {% endfor %}
+
+    {% include 'header.html' %}
+
+    <h2>Page of Post: {{ post.title }}</h2>
+    <div class="post-card">
+        <div>Topic: {{ post.topic }}</div>
+        <div>Description: {{ post.description }}</div>
+        {% if post.start %}
+            <div>Start event: {{ post.start.strftime('%Y-%m-%d') }}</div>
+        {% endif %}
+        {% if post.end %}
+            <div>End event: {{ post.end.strftime('%Y-%m-%d') }}</div>
+        {% endif %}
+        <div>Author: {{ post.author }}</div>
+        <div>Created: {{ post.create_date }}</div>
+        <div>Author: {{ post.update_date }}</div>
+    </div>
+</body>
+</html>

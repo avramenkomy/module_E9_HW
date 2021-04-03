@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <h1>Create post</h1>
+    <div class="create-post-form" style="width: 40%">
+            <form method="POST" action="/create_post" enctype=multipart/form-data>
+                {{ form.csrf_token }}
+
+
+                <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+                    <div class="form-field-label">{{ form.title.label }}</div>
+                    <div class="form-field-value">{{ form.title }}</div>
+                </div>
+                <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+                    <div class="form-field-label">{{ form.topic.label }}</div>
+                    <div class="form-field-value">{{ form.topic }}</div>
+                </div>
+                <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+                    <div class="form-field-label">{{ form.start_event.label }}</div>
+                    <div class="form-field-value">{{ form.start_event }}</div>
+                </div>
+                <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
+                    <div class="form-field-label">{{ form.end_event.label }}</div>
+                    <div class="form-field-value">{{ form.end_event }}</div>
+                </div>
+                <div class="form-field" style="display: grid;">
+                    <div class="form-field-label">{{ form.description.label }}</div>
+                    <div class="form-field-value">{{ form.description }}</div>
+                </div>
+
+<!--                <input type="file" name=file>-->
+                <input type="submit" value="Отправить">
+
+            </form>
+        </div>
+</body>
+</html>
