@@ -17,4 +17,5 @@ bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)
 
 
-from app import routes, models
+from app import routes, models, forms
+db.create_all()
