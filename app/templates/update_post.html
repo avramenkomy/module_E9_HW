@@ -3,56 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Update post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    {% include 'header.html' %}
+
     {% for msg in get_flashed_messages() %}
         <div class="flash">{{ msg }}</div>
     {% endfor %}
 
-    {% include 'header.html' %}
-
     {% if post %}
-        <h3>Current info of Post {{ post.title }}</h3>
-        <div class="post-card">
-            <div>Topic: {{ post.topic }}</div>
-            <div>Description: {{ post.Description }}</div>
-            {% if post.start %}
-                <div>Start event: {{ post.start.strftime('%Y-%m-%d') }}</div>
-            {% endif %}
-            {% if post.end %}
-                <div>End event: {{ post.end.strftime('%Y-%m-%d') }}</div>
-            {% endif %}
-            {% if post.tags %}
-                <div>Tags of event: {{ post.tags }}</div>
-            {% endif %}
+        <h3>Current info of post</h3>
+        <div class="posts-card">
+            <div class="post-title"><h3>{{ post.title }}</h3></div>
+            <div class="post-info">
+                <div class="post-labels">
+                    <div class="post-label-name">Topic: </div>
+                    <div class="post-label-name">Author: </div>
+                    <div class="post-label-name">Time of start: </div>
+                    <div class="post-label-name">Time of end: </div>
+                </div>
+                <div class="post-values">
+                    <div class="post-value">{{ post.topic }}</div>
+                    <div class="post-value">{{ post.author }}</div>
+                    <div class="post-value">{{ post.start.strftime('%Y-%m-%d') }}</div>
+                    <div class="post-value">{{ post.end.strftime('%Y-%m-%d') }}</div>
+                </div>
+            </div>
         </div>
     {% endif %}
 
     <h3>Form for update Post</h3>
-    <form method="POST" action="/update/{{ post.id }}">
+    <div method="POST" action="/update/{{ post.id }}">
         {{ form.csrf_token }}
+        <div class="update-post-form">
 
-        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
-            <div class="form-field-label">{{ form.title.label }}</div>
-            <div class="form-field-value">{{ form.title }}</div>
+            <div class="update-post-form-label">{{ form.title.label }}</div>
+            <div class="update-post-form-value">{{ form.title }}</div>
+            <div class="update-post-form-label">{{ form.topic.label }}</div>
+            <div class="update-post-form-value">{{ form.topic }}</div>
+            <div class="update-post-form-label">{{ form.start_event.label }}</div>
+            <div class="update-post-form-value">{{ form.start_event }}</div>
+            <div class="update-post-form-label">{{ form.end_event.label }}</div>
+            <div class="update-post-form-value">{{ form.end_event }}</div>
+
+            <div class="description-post-block">
+                {{ form.description.label }}<br>
+                {{ form.description }}
+            </div>
         </div>
-        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
-            <div class="form-field-label">{{ form.topic.label }}</div>
-            <div class="form-field-value">{{ form.topic }}</div>
-        </div>
-        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
-            <div class="form-field-label">{{ form.start_event.label }}</div>
-            <div class="form-field-value">{{ form.start_event }}</div>
-        </div>
-        <div class="form-field" style="display: grid; grid-template-columns: 1fr 1fr;">
-            <div class="form-field-label">{{ form.end_event.label }}</div>
-            <div class="form-field-value">{{ form.end_event }}</div>
-        </div>
-        <div class="form-field" style="display: grid;">
-            <div class="form-field-label">{{ form.description.label }}</div>
-            <div class="form-field-value">{{ form.description }}</div>
-        </div>
+
         <input type="submit" value="Отправить">
     </form>
+<script src="{{ url_for('static', filename='js/flash_msg.js') }}"></script>
 </body>
 </html>

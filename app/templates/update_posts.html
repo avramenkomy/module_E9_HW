@@ -6,29 +6,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    {% include 'header.html' %}
 
     {% for msg in get_flashed_messages() %}
         <div class="flash">{{ msg }}</div>
     {% endfor %}
 
-    {% include 'header.html' %}
-
     <main>
-        <h1>Welcome to portal of events</h1>
+
         {% if message %}
             <h2>{{ message }}</h2>
         {% endif %}
+
         <!-- Posts view -->
-        <div class="posts-wrapper" style="display: flex; flex-wrap: wrap;">
+        <div class="posts-wrapper">
             {% if posts %}
                 {% for post in posts %}
-
-                    <div class="posts-card" style="margin: 10px; border: black 2px solid; width: 300px; height: auto;">
+                    <div class="posts-card">
                         <a href="{{ url_for('update_post', id=post.id) }}" class="post-link">
-                            <div class="post-title" style="text-align: center"><h3>{{ post.title }}</h3></div>
-
-                            <div class="post-info" style="margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr;">
-                                <div class="post-labels" style="margin-left: 5px">
+                            <div class="post-title"><h3>{{ post.title }}</h3></div>
+                            <div class="post-info" >
+                                <div class="post-labels">
                                     <div class="post-label-name">Topic: </div>
                                     <div class="post-label-name">Author: </div>
                                     <div class="post-label-name">Time of start: </div>
@@ -43,14 +41,15 @@
                             </div>
                         </a>
                     </div>
-
                 {% endfor %}
+            {% elif not posts %}
+                <h3>Posts for update is not found. <a href="/create_post">Create your first post</a>.</h3>
             {% endif %}
         </div>
     </main>
 
     <footer></footer>
 
-
+<script src="{{ url_for('static', filename='js/flash_msg.js') }}"></script>
 </body>
 </html>

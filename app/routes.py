@@ -104,7 +104,7 @@ def create_post():
 @app.route('/delete', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def delete_posts():
-    posts = Post.query.filter_by(author=current_user.email)
+    posts = Post.query.filter_by(author=current_user.email).all()
     message = "List of your posts available for deletion"
     return render_template('delete_posts.html', posts=posts, message=message)
 
@@ -157,8 +157,9 @@ def user_post(id):
 @app.route('/update', methods=['POST', 'GET'])
 @login_required
 def update_posts():
-    posts = Post.query.filter_by(author=current_user.email)
+    posts = Post.query.filter_by(author=current_user.email).all()
     message = "List of your posts available for update"
+    print('posts: ', posts)
     return render_template('update_posts.html', posts=posts, message=message)
 
 
